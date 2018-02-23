@@ -1,0 +1,274 @@
+#- alias: 'Nils soluppgång'
+#  trigger:
+#    - platform: time
+#      at: '6:20:00'
+#  action:
+#    service: light.turn_on
+#    entity_id: light.nils_tak
+#    data:
+#      brightness: 255
+#      rgb_color:
+#        - 255
+#        - 0
+#        - 0
+#      transition: 9000
+# Turn off after sunrise
+- alias: 'Släck efter soluppgång'
+  trigger:
+    platform: sun
+    event: sunrise
+    offset: '+01:30:00'
+  action:
+    service: homeassistant.turn_off
+    entity_id: group.study, group.tvrum, group.vrum
+# Turn on before sunset
+- alias: 'Tänd innan solnedång'
+  trigger:
+    platform: sun
+    event: sunset
+    offset: '-01:30:00'
+  action:
+    service: homeassistant.turn_on
+    entity_id: group.study, group.tvrum, group.vrum
+
+# study on
+- alias: 'Arbetsrum på vardagar'
+  trigger:
+    - platform: time
+      at: '08:00:00'
+  condition:
+    - condition: state
+      entity_id: 'binary_sensor.arbetsdag'
+      state: 'on'
+  action:
+    service: homeassistant.turn_on
+    entity_id: group.study
+# study off
+- alias: 'Arbetsrum av'
+  trigger:
+    - platform: time
+      at: '21:30:00'
+  action:
+    service: homeassistant.turn_off
+    entity_id: group.study
+
+# TV-room on
+- alias: 'TVRum på vardagar'
+  trigger:
+    - platform: time
+      at: '6:30:00'
+  condition:
+    - condition: state
+      entity_id: 'binary_sensor.arbetsdag'
+      state: 'on'
+  action:
+    service: homeassistant.turn_on
+    entity_id: group.tvrum
+- alias: 'TVRum på helger'
+  trigger:
+    - platform: time
+      at: '8:00:00'
+  condition:
+    - condition: state
+      entity_id: 'binary_sensor.arbetsdag'
+      state: 'off'
+  action:
+    service: homeassistant.turn_on
+    entity_id: group.tvrum
+# TV-room off
+- alias: 'TVRum av vardagar'
+  trigger:
+    - platform: time
+      at: '22:00:00'
+  condition:
+    - condition: state
+      entity_id: 'binary_sensor.arbetsdag_imorgon'
+      state: 'on'
+  action:
+    service: homeassistant.turn_off
+    entity_id: group.tvrum
+- alias: 'TVRum av helger'
+  trigger:
+    - platform: time
+      at: '23:30:00'
+  condition:
+    - condition: state
+      entity_id: 'binary_sensor.arbetsdag_imorgon'
+      state: 'off'
+  action:
+    service: homeassistant.turn_off
+    entity_id: group.tvrum
+- alias: 'Vardagsrum av vardagar'
+  trigger:
+    - platform: time
+      at: '22:01:00'
+  condition:
+    - condition: state
+      entity_id: 'binary_sensor.arbetsdag_imorgon'
+      state: 'on'
+  action:
+    service: homeassistant.turn_off
+    entity_id: group.vrum
+- alias: 'Vardagsrum av helger'
+  trigger:
+    - platform: time
+      at: '23:31:00'
+  condition:
+    - condition: state
+      entity_id: 'binary_sensor.arbetsdag_imorgon'
+      state: 'off'
+  action:
+    service: homeassistant.turn_off
+    entity_id: group.vrum
+# Orangeri on
+- alias: 'Orangeri på'
+  trigger:
+    - platform: time
+      at: '06:15:00'
+  action:
+    service: homeassistant.turn_on
+    entity_id: group.conservatory
+# Orangeri off
+- alias: 'Orangeri av'
+  trigger:
+    - platform: time
+      at: '23:30:00'
+  action:
+    service: homeassistant.turn_off
+    entity_id: group.conservatory
+# plant light orangeri on
+- alias: 'Lysrör orangeri på'
+  trigger:
+    - platform: time
+      at: '09:00:00'
+  action:
+    service: homeassistant.turn_on
+    entity_id: switch.conservatory_plants
+# plant light orangeri off
+- alias: 'Lysrör orangeri av'
+  trigger:
+    - platform: time
+      at: '21:00:00'
+  action:
+    service: homeassistant.turn_off
+    entity_id: switch.conservatory_plants
+# plant light kitchen on vardargar
+- alias: 'Lysrör kök på vardagar'
+  trigger:
+    - platform: time
+      at: '06:30:00'
+  condition:
+    - condition: state
+      entity_id: 'binary_sensor.arbetsdag'
+      state: 'on'
+  action:
+      service: homeassistant.turn_on
+      entity_id: switch.kitchen_plants
+# plant light kitchen on helger
+- alias: 'Lysrör kök på helg'
+  trigger:
+    - platform: time
+      at: '08:00:00'
+  condition:
+    - condition: state
+      entity_id: 'binary_sensor.arbetsdag'
+      state: 'off'
+  action:
+    service: homeassistant.turn_on
+    entity_id: switch.kitchen_plants
+# plant light kitchen off
+- alias: 'Lysrör kök av'
+  trigger:
+    - platform: time
+      at: '21:00:00'
+  action:
+    service: homeassistant.turn_off
+    entity_id: switch.kitchen_plants
+# Everything
+- alias: Remote1 Allt
+  trigger:
+    - platform: state
+      entity_id: switch.remote_1
+  action:
+    service_template: >
+      {% if is_state('switch.remote_1', 'on') %}
+        homeassistant.turn_on
+      {% else %}
+        homeassistant.turn_off
+      {% endif %}
+    entity_id: group.master
+# Living room + kitchen light
+- alias: Remote2 VRum
+  trigger:
+    - platform: state
+      entity_id: switch.remote_2
+  action:
+    service_template: >
+      {% if is_state('switch.remote_2', 'on') %}
+        homeassistant.turn_on
+      {% else %}
+        homeassistant.turn_off
+      {% endif %}
+    entity_id: group.vrum
+# TV Room
+- alias: Remote3 TV Rum
+  trigger:
+    - platform: state
+      entity_id: switch.remote_3
+  action:
+    service_template: >
+      {% if is_state('switch.remote_3', 'on') %}
+        homeassistant.turn_on
+      {% else %}
+        homeassistant.turn_off
+      {% endif %}
+    entity_id: group.tvrum
+# Orangeri
+- alias: Remote4 Orangeri
+  trigger:
+    - platform: state
+      entity_id: switch.remote_4
+  action:
+    service_template: >
+      {% if is_state('switch.remote_4', 'on') %}
+        homeassistant.turn_on
+      {% else %}
+        homeassistant.turn_off
+      {% endif %}
+    entity_id: group.conservatory
+# Plant lights
+- alias: Remote5 Växtlysrör Orangeri + kök
+  trigger:
+    - platform: state
+      entity_id: switch.remote_5
+  action:
+    service_template: >
+      {% if is_state('switch.remote_5', 'on') %}
+        homeassistant.turn_on
+      {% else %}
+        homeassistant.turn_off
+      {% endif %}
+    entity_id: group.plants
+# Car heater
+- alias: Remote6 Bilvärme inkl. indikator i hall
+  trigger:
+    - platform: state
+      entity_id: switch.remote_6
+  action:
+    service_template: >
+      {% if is_state('switch.remote_6', 'on') %}
+        homeassistant.turn_on
+      {% else %}
+        homeassistant.turn_off
+      {% endif %}
+    entity_id: group.carheater
+#- alias: Montion sensor backside
+#  trigger:
+#    - platform: state
+#      entity_id: switch.motion_back
+#  action:
+#    service_template: >
+#      {% if is_state('switch.motion_back', 'on') %}
+#        switch.toggle
+#      {% endif %}
+#    entity_id: switch.tv_painting

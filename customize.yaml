@@ -1,0 +1,179 @@
+group.sensorer:
+  homebridge_hidden: true
+group.pi:
+  homebridge_hidden: true
+group.master:
+  homebridge_hidden: true
+group.all_switches:
+  homebridge_hidden: true
+group.all_lights:
+  homebridge_hidden: true
+group.all_devices:
+  homebridge_hidden: true
+group.all_scripts:
+  homebridge_hidden: true
+group.all_automations:
+  homebridge_hidden: true
+group.carheater:
+  homebridge_hidden: true
+group.vrum_view:
+  homebridge_hidden: true
+group.tvrum_view:
+  homebridge_hidden: true
+group.orangeri_view:
+  homebridge_hidden: true
+group.pi_view:
+  homebridge_hidden: true
+group.sensor_view:
+  homebridge_hidden: true
+group.system_view:
+  homebridge_hidden: true
+zwave.__6:
+  friendly_name: ' zw1'
+  homebridge_hidden: true
+  hidden: true
+switch.bookshelf:
+  friendly_name: VRum bokhylla
+switch.conservatory_side:
+  friendly_name: Orangeriet sida
+switch.conservatory_plants:
+  friendly_name: Orangeriet lysrör
+switch.kitchen_window:
+  friendly_name: Kök fönster
+switch.window_bookshelf:
+  friendly_name: VRum fönster bokylla
+switch.conservatory_front:
+  friendly_name: Orangeriet gatan
+switch.kitchen_plants:
+  friendly_name: Kök lysrör
+switch.piano:
+  friendly_name: VRum piano
+switch.tv_tv:
+  friendly_name: TVRum tv
+switch.hall_car_indicator:
+  friendly_name: Bilvärme indikator i hall
+switch.game_table:
+  friendly_name: VRum spelbord
+switch.window_stairs:
+  friendly_name: VRum fönster trappa
+switch.tv_window:
+  friendly_name: TVRum fönster
+switch.tv_nefretiti:
+  friendly_name: TVRum Nefertiti
+  entity_picture: https://i.pinimg.com/236x/7c/fb/11/7cfb119475b07b0eebc6e362a185fc6b--plaster-cgi.jpg
+switch.tv_painting:
+  friendly_name: TVRum tavla
+switch.car_heater:
+  friendly_name: Bilvärme
+switch.remote_1:
+  friendly_name: RemoteButton1
+  homebridge_hidden: true
+  hidden: true
+switch.remote_2:
+  friendly_name: RemoteButton2
+  homebridge_hidden: true
+  hidden: true
+switch.remote_3:
+  friendly_name: RemoteButton3
+  homebridge_hidden: true
+  hidden: true
+switch.remote_4:
+  friendly_name: RemoteButton4
+  homebridge_hidden: true
+  hidden: true
+switch.remote_5:
+  friendly_name: RemoteButton5
+  homebridge_hidden: true
+  hidden: true
+switch.remote_6:
+  friendly_name: RemoteButton6
+  homebridge_hidden: true
+  hidden: true
+sensor.11_temperature:
+  friendly_name: Ute baksida
+sensor.12_temperature:
+  friendly_name: Växthus
+sensor.yr_symbol:
+  friendly_name: yr
+zwave.thermofloor_as_heatit_thermostat_tf_021:
+  friendly_name: Heatit Thermostat Hall
+  homebridge_hidden: true
+  hidden: true
+zwave.thermofloor_as_heatit_thermostat_tf_021_2:
+  friendly_name: Heatit Thermostat Tvättstuga
+  homebridge_hidden: true
+  hidden: true
+sensor.hall_temperature:
+  friendly_name: Hall
+climate.hall_heating:
+  friendly_name: Värme hallgolv
+climate.hall_energy_heat:
+  friendly_name: Energy hallgolv
+  homebridge_hidden: true
+sensor.laundry_temperature:
+  friendly_name: Tvättstuga
+climate.laundry_heating:
+  friendly_name: Värme tvättstugegolv
+climate.laundry_energy_heat:
+  friendly_name: Energi tvättstugegolv
+  homebridge_hidden: true
+switch.study:
+  friendly_name: Arbetsrum
+sensor.bookshelf_alarm_level:
+  friendly_name: Bokhylla Alarm Level
+  homebridge_hidden: true
+  hidden: true
+sensor.bookshelf_alarm_type:
+  friendly_name: Bokhylla Alarm TypeX
+  homebridge_hidden: true
+  hidden: true
+light.nils_tak:
+  friendly_name: Nils taklampa
+sensor.nils_fjarr:
+  friendly_name: Nils fjärr batteri
+sensor.gustav_fjarr_fonster:
+  friendly_name: Gustavs fjärr batteri fönsterlampa
+light.gustavs_dodsstjarna:
+  friendly_name: Gustavs taklampa
+sensor.gustavs_fjarr_tak:
+  friendly_name: Gustavs fjärr batteri taklampa
+light.gustavs_fonsterlampa:
+  friendly_name: Gustavs fönsterlampa
+device_tracker.nils:
+  friendly_name: Nils
+device_tracker.gustav:
+  friendly_name: Gustav
+device_tracker.mia:
+  friendly_name: Mia
+device_tracker.ulfprivate:
+  friendly_name: Ulf (privat)
+device_tracker.ulfwork:
+  friendly_name: Ulf (jobb)
+light.ute_baksida:
+  friendly_name: Lampa baksida
+media_player.rasplex:
+  friendly_name: Plex on Rasberry Pi
+  hidden: true
+media_player.tv_taby:
+  friendly_name: Chromecast TV
+media_player.stereon:
+  friendly_name: Chromecast Stereo
+switch.motion_back:
+  friendly_name: Rörelsedetector baksida
+binary_sensor.people_home:
+  friendly_name: Någon hemma
+switch.nexa_1:
+  friendly_name: Nexa 1
+  hidden: true
+switch.dummy_virtual_switch:
+  friendly_name: Dummy virtual switch TellStick
+  homebridge_hidden: true
+  hidden: true
+sensor.11_humidity:
+  friendly_name: Baksida humidity
+  homebridge_hidden: true
+  hidden: true
+sensor.12_humidity:
+  friendly_name: Växthus humidity
+  homebridge_hidden: true
+  hidden: true

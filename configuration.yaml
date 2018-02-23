@@ -1,0 +1,225 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: 59.4489494
+  longitude: 18.0532207
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 25
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Europe/Stockholm
+  # Customization file
+  customize: !include customize.yaml
+  customize_domain:
+    automation:
+      hidden: true
+    zwave:
+      hidden: true
+
+#  customize_domain:
+#    - switches:
+#      icon: mdi:lightbulb
+  #    - light:
+  #      icon: mdi:home
+
+
+logger:
+  default: info
+
+recorder:
+#  purge_keep_days: 14
+#  purge_interval: 2
+  db_url: !secret mariadb_connection_url
+  include:
+    entities:
+      - switch.motion_back
+      - sensor.11_temperature
+      - sensor.12_temperature # växthus
+      - sensor.hall_temperature
+      - sensor.laundry_temperature
+    domains:
+      - binary_sensor
+      - input_text
+
+#recorder:
+#  purge_keep_days: 7
+#  include:
+#    domains:
+#      - sensor
+#      - switch
+#      - binary_sensor
+#    entities:
+#      - input_boolean.holiday
+#  exclude:
+#    entities:
+#      - sun.sun # Don't record sun data
+#      - sensor.yr_symbol
+#      - sensor.yr_temperature
+#      - sensor.yr_precipitation
+#      - sensor.yr_cloudiness
+#      - sensor.ram_available
+#      - sensor.ram_used
+#      - sensor.cpu_used
+#      - sensor.disk_used_home
+
+# Show links to resources in log and frontend
+# introduction:
+
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+http:
+  # Secrets are defined in the file secrets.yaml
+  # api_password: !secret http_password
+  # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+  # base_url: example.duckdns.org:8123
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  reporting: false
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+
+# Discover some devices automatically
+# discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+#  domains:
+#    - automation
+#    - weblink
+#    - updater
+#    - switch
+
+# View all events in a logbook
+logbook:
+
+# Enables a map showing the location of tracked devices
+# map:
+
+# Track the sun
+sun:
+
+binary_sensor:
+  - platform: workday
+    country: SE
+    name: arbetsdag
+  - platform: workday
+    country: SE
+    name: arbetsdag_imorgon
+    days_offset: 1
+  - platform: template
+    sensors:
+      motion_back:
+        device_class: motion
+        value_template: "{{ is_state('switch.motion_back', 'on') }}"
+  - platform: template
+    sensors:
+      people_home:
+        value_template: >-
+          {{ is_state('device_tracker.nils', 'home')
+             or is_state('device_tracker.gustav', 'home')
+             or is_state('device_tracker.mia', 'home')
+             or is_state('device_tracker.ulfprivate', 'home')
+             or is_state('device_tracker.ulfwork', 'home') }}
+ #{{ is_state('sensor.bedroom_co_status', 'Ok')
+ #            and is_state('sensor.kitchen_co_status', 'Ok')
+ #            and is_state('sensor.wardrobe_co_status', 'Ok') }}
+
+input_boolean:
+  holiday:
+    name: Borta på semester
+    icon: mdi:beach
+  carheater:
+    name: Bilvärme på
+    icon: mdi:car
+
+input_text:
+  carleavetime:
+    name: Time to go
+    pattern: '[0-9][0-9]:[0-9][0-9]'
+    icon: mdi:car
+  nilsleavemonday:
+    name: Nils åker måndag
+    pattern: '[0-9][0-9]:[0-9][0-9]'
+    icon: mdi:school
+
+# Weather prediction
+sensor:
+#  - platform: fitbit
+#    clock_format: 24H
+#    monitored_resources:
+#      - activities/steps
+#      - activities/tracker/steps
+#      - devices/battery
+#      - body/weight
+  - platform: tellstick
+#    only_named: true
+  - platform: yr
+    name: Väder YR 24h
+    forecast: 24
+    monitored_conditions:
+      - temperature
+      - symbol
+      - precipitation
+      - cloudiness
+  - platform: systemmonitor
+    resources:
+      - type: disk_use_percent
+        arg: /home
+      - type: memory_free
+      - type: processor_use
+      - type: memory_use
+
+device_tracker:
+  - platform: netgear
+    host: 192.168.0.1
+    username: admin
+    password: !secret router_password
+    new_device_defaults:
+      track_new_devices: false
+
+# Text to speech.
+#tts:
+#  - platform: google
+
+# Cloud
+# cloud:
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+
+tradfri:
+  host: 192.168.0.24
+  allow_tradfri_groups: false
+
+zwave:
+  usb_path: /dev/ttyACM0
+
+tellstick:
+  signal_repetitions: 2
+
+switch:
+  - platform: tellstick
+    signal_repetitions: 2
+
+media_player:
+  - platform: cast
+    host: 192.168.0.4
+  - platform: cast
+    host: 192.168.0.6
+  - platform: plex
+

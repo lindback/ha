@@ -1,0 +1,57 @@
+sensor.hall_temperature:
+  platform: zwave
+  unique_id: 2-72057594076479506
+climate.hall_energy_heat:
+  platform: zwave
+  unique_id: 2-72057594076774578
+climate.hall_heating:
+  platform: zwave
+  unique_id: 2-72057594076774418
+sensor.laundry_temperature:
+  platform: zwave
+  unique_id: 3-72057594093256722
+climate.laundry_heating:
+  platform: zwave
+  unique_id: 3-72057594093551634
+climate.laundry_energy_heat:
+  platform: zwave
+  unique_id: 3-72057594093551794
+switch.bookshelf:
+  platform: zwave
+  unique_id: 4-72057594109837312
+sensor.bookshelf_alarm_type:
+  platform: zwave
+  unique_id: 4-72057594111082497
+sensor.bookshelf_alarm_level:
+  platform: zwave
+  unique_id: 4-72057594111082513
+switch.conservatory_side:
+  platform: zwave
+  unique_id: 5-72057594126614528
+switch.conservatory_front:
+  platform: zwave
+  unique_id: 8-72057594176946176
+switch.piano:
+  platform: zwave
+  unique_id: 13-72057594260832256
+switch.conservatory_plants:
+  platform: zwave
+  unique_id: 15-72057594294386688
+switch.window_bookshelf:
+  platform: zwave
+  unique_id: 16-72057594311163904
+switch.kitchen_window:
+  platform: zwave
+  unique_id: 19-72057594361495552
+switch.kitchen_plants:
+  platform: zwave
+  unique_id: 20-72057594378272768
+switch.study:
+  platform: zwave
+  unique_id: 21-72057594395049984
+media_player.rasplex:
+  platform: plex
+  unique_id: 49ddb3e6-4055-4b6d-8015-c620fd539119
+media_player.plex_web_chrome:
+  platform: plex
+  unique_id: f7tk075ehnpfj8dlx2j0885m

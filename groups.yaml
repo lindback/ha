@@ -1,0 +1,195 @@
+  default_view_X:
+    view: yes
+    name: Hemma
+    entities:
+      - group.master
+      - group.carheater
+      - group.vrum
+      - group.tvrum
+      - group.conservatory
+      - group.nils
+      - group.study
+      - group.gustav
+      - group.family
+      - group.outback
+
+
+  carheater:
+    name: Bilvärme och indikator
+    icon: mdi:car
+    entities:
+      - switch.hall_car_indicator
+      - switch.car_heater
+      - input_boolean.carheater
+      - input_text.carleavetime
+
+  master:
+    name: Huvudbrytare
+    entities:
+      - group.vrum
+      - group.tvrum
+      - group.study
+      - group.conservatory
+      - group.plants
+
+  vrum:
+    name: Vardagsrum
+    entities:
+      - switch.bookshelf
+      - switch.piano
+      - switch.window_bookshelf
+      - switch.kitchen_window
+      - switch.window_stairs
+      - switch.game_table
+
+  gustav:
+    name: Gustavs rum
+    entities:
+      - light.gustavs_fonsterlampa
+      - light.gustavs_dodsstjarna
+      - sensor.gustav_fjarr_fonster
+      - sensor.gustavs_fjarr_tak
+      - device_tracker.gustavsiphone
+
+  nils:
+    name: Nils rum
+    entities:
+      - light.nils_tak
+      - sensor.nils_fjarr
+      - device_tracker.nilsandroid
+      - input_text.nilsleavemonday
+
+  tvrum:
+    name: TV Rum
+    entities:
+      - switch.tv_nefretiti
+      - switch.tv_painting
+      - switch.tv_window
+      - switch.tv_tv
+
+  conservatory:
+    name: Orangeri
+    entities:
+      - switch.conservatory_front
+      - switch.conservatory_side
+
+  study:
+    name: Arbetsrum
+    entities:
+      - switch.study
+
+  plants:
+    name: Växtlysrör
+    entities:
+      - switch.conservatory_plants # Lysrör orangeri
+      - switch.kitchen_plants # Lysrör kök
+
+  kitchen:
+    name: Kök
+    entities:
+
+  outback:
+    name: Ute baksida
+    entities:
+      - switch.motion_back
+      - light.ute_baksida
+      - sensor.11_temperature
+      - sensor.12_temperature
+
+  family:
+    name: Familj
+    entities:
+      - device_tracker.nils
+      - device_tracker.gustav
+      - device_tracker.mia
+      - device_tracker.ulfprivate
+      - device_tracker.ulfwork
+      - binary_sensor.people_home
+      - input_boolean.holiday
+
+  hall:
+    name: Hall
+    entities:
+      - sensor.hall_temperature
+      - climate.hall_heating
+      - climate.hall_energy_heat
+
+  laundry:
+    name: Tvättstuga
+    entities:
+      - sensor.laundry_temperature
+      - climate.laundry_heating
+      - climate.laundry_energy_heat
+
+  players:
+    name: Media
+    entities:
+      - media_player.tv_taby
+      - media_player.stereon
+
+
+  sensorer:
+    name: Sensorer
+    entities:
+      - sensor.hall_temperature
+      - climate.hall_heating
+      - climate.hall_energy_heat
+      - sensor.laundry_temperature
+      - climate.laundry_heating
+      - climate.laundry_energy_heat
+      - sensor.11_temperature
+      - sensor.12_temperature # växthus
+      - sensor.vader_yr_24h_symbol
+      - sensor.vader_yr_24h_temperature
+      - sensor.vader_yr_24h_precipitation
+      - sensor.vader_yr_24h_cloudiness
+      - binary_sensor.people_home
+      - sun.sun
+
+  pi:
+    name: Home assistent Rasperry Pi
+    entities:
+      - sensor.memory_free
+      - sensor.memory_use
+      - sensor.processor_use
+      - sensor.disk_use_percent_home
+
+
+  vrum_view:
+    view: yes
+    name: Vardagsrum/Kök
+    entities:
+      - group.vrum
+
+  tvrum_view:
+    view: yes
+    name: TV Rum
+    entities:
+      - group.tvrum
+
+  conservatory_view:
+    view: yes
+    name: Orangeri
+    entities:
+      - group.conservatory
+
+  pi_view:
+    view: yes
+    name: Hassbian
+    entities:
+      - group.pi
+
+  sensor_view:
+    view: yes
+    name: Sensorer
+    entities:
+      - group.sensorer
+
+  system_view:
+    view: yes
+    name: System
+    entities:
+      - group.all_automations
+      - group.all_scripts
+      - group.all_switches
+      - group.pi
