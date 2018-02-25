@@ -1,26 +1,19 @@
-  default_view_X:
+  default_view:
     view: yes
     name: Hemma
     entities:
       - group.master
       - group.carheater
-      - group.vrum
-      - group.tvrum
-      - group.conservatory
-      - group.nils
-      - group.study
-      - group.gustav
       - group.family
-      - group.outback
-
 
   carheater:
     name: Bilvärme och indikator
     icon: mdi:car
     entities:
+      - automation.car_heater_on_timer
       - switch.hall_car_indicator
       - switch.car_heater
-      - input_boolean.carheater
+#      - input_boolean.carheater
       - input_text.carleavetime
 
   master:
@@ -99,6 +92,7 @@
   family:
     name: Familj
     entities:
+      - switch.motion_back
       - device_tracker.nils
       - device_tracker.gustav
       - device_tracker.mia
@@ -127,6 +121,14 @@
       - media_player.tv_taby
       - media_player.stereon
 
+  outside:
+    name: Ute allmänt
+    entities:
+      - sensor.vader_yr_24h_symbol
+      - sensor.vader_yr_24h_temperature
+      - sensor.vader_yr_24h_precipitation
+      - sensor.vader_yr_24h_cloudiness
+      - sun.sun
 
   sensorer:
     name: Sensorer
@@ -143,7 +145,6 @@
       - sensor.vader_yr_24h_temperature
       - sensor.vader_yr_24h_precipitation
       - sensor.vader_yr_24h_cloudiness
-      - binary_sensor.people_home
       - sun.sun
 
   pi:
@@ -154,30 +155,32 @@
       - sensor.processor_use
       - sensor.disk_use_percent_home
 
-
-  vrum_view:
+  topfloor_view:
     view: yes
-    name: Vardagsrum/Kök
+    name: Övervåning
+    entities:
+      - group.gustav
+      - group.nils
+      - group.study
+
+  bottomfloor_view:
+    view: yes
+    name: Nedervåning
     entities:
       - group.vrum
-
-  tvrum_view:
-    view: yes
-    name: TV Rum
-    entities:
       - group.tvrum
-
-  conservatory_view:
-    view: yes
-    name: Orangeri
-    entities:
       - group.conservatory
+      - group.plants
+      - group.hall
+      - group.laundry
 
-  pi_view:
+  outdoor_view:
     view: yes
-    name: Hassbian
+    name: Utomhus
     entities:
-      - group.pi
+      - group.outback
+      - group.carheater
+      - group.outside
 
   sensor_view:
     view: yes
@@ -189,7 +192,8 @@
     view: yes
     name: System
     entities:
+      - group.players
+      - group.pi
       - group.all_automations
       - group.all_scripts
       - group.all_switches
-      - group.pi

@@ -272,3 +272,57 @@
 #        switch.toggle
 #      {% endif %}
 #    entity_id: switch.tv_painting
+- alias: Car Heater on Timer
+  trigger:
+    platform: time
+    minutes: '/15' # trigger ever 15 min
+    seconds: 00
+  action:
+    - entity_id: switch.hall_car_indicator
+      service_template: >
+        {#-                                                                -#}
+        {#- End of configuration                                           -#}
+        {#-                                                                -#}
+        {#- Define a input_text.carleavetime and set time to e.g. 13:30 -#}
+        {%- set leaveTimeInputText = 'carleavetime' -%}
+        {#- Define primary temperature sensor: -#}
+        {%- set tempSensor =  '11_temperature' -%}
+        {#- Define backup temperature sensor: -#}
+        {%- set tempBackupSensor =  'vader_yr_24h_temperature' -%}
+        {#- Define how old (in minutes) primary temperature sensor data can be before falling back to using backup sensor (proving backup is newer than primary) -#}
+        {%- set tempSensorFallbackMinutes =  120 -%}
+        {#- Define how many times to send OFF command, also needs to know time trigger interval in minutes -#}
+        {%- set offRepeats = 3 -%}
+        {%- set interval = 15 -%}
+        {#- Define how long time before (in minutes) to turn on heater at certain temperature (need to be ordered, colder to warmer) -#}
+        {%- set timeTemp = [ {'temp': -15, 'min': 210}, {'temp': -10, 'min': 180} , {'temp': -5, 'min': 120}, {'temp': 0, 'min': 90}, {'temp': 5, 'min': 60}  ] -%}
+        {#-                                                                -#}
+        {#- End of configuration                                           -#}
+        {#-                                                                -#}
+        {#- Determine which temp sensor to use and set temp to its value -#}
+        {%- set tempSensorUpdateSeconds =  (now() - states.sensor[tempSensor].last_updated).total_seconds() |int    -%}
+        {%- set tempBackupSensorUpdateSeconds =  (now() - states.sensor[tempBackupSensor].last_updated).total_seconds() |int    -%}
+        {%- if  tempSensorUpdateSeconds > tempSensorFallbackMinutes * 60  and  tempSensorUpdateSeconds > tempBackupSensorUpdateSeconds  -%}
+        {#- temp was updated > X min ago and tempBackup was updated more recent -#}
+        {%- set temp = states.sensor[tempBackupSensor].state  -%}
+        {%- else -%}
+        {%- set temp = states.sensor[tempSensor].state -%}
+        {%- endif -%}
+        {%- set nowMinutes = now().hour * 60 + now().minute -%}
+        {%- set startTimes = states.input_text[leaveTimeInputText].state.split(":")  -%}
+        {%- set startMinutes = 60 * startTimes[0] | int +  startTimes[1]  | int  -%}
+        {%- set diffMinutes = startMinutes - nowMinutes -%}
+        {# Loop through timeTemp list, but only look at entries where temp is lower than value specified #}
+        {%- for value in  timeTemp if not temp | float >  value['temp'] -%}
+        {%- if diffMinutes  > 0 and diffMinutes < value['min'] -%}
+        {# Within time and temp range #}
+        {%- if loop.first -%}
+        homeassistant.turn_on
+        {%- endif -%}
+        {%- elif diffMinutes  < 0 and -1 * diffMinutes < offRepeats * interval -%}
+        {%- if loop.first -%}
+        homeassistant.turn_off
+        {%- endif -%}
+        {%- endif -%}
+        {%- endfor -%}
+

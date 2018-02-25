@@ -39,6 +39,7 @@ recorder:
       - sensor.12_temperature # växthus
       - sensor.hall_temperature
       - sensor.laundry_temperature
+      - automation.car_heater_on_timer
     domains:
       - binary_sensor
       - input_text
@@ -104,7 +105,7 @@ history:
 #    - switch
 
 # View all events in a logbook
-logbook:
+#logbook:
 
 # Enables a map showing the location of tracked devices
 # map:

@@ -177,3 +177,6 @@ sensor.12_humidity:
   friendly_name: Växthus humidity
   homebridge_hidden: true
   hidden: true
+automation.car_heater_on_timer:
+  friendly_name: Car Heater on Timer
+  hidden: false

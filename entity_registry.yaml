@@ -55,3 +55,9 @@ media_player.rasplex:
 media_player.plex_web_chrome:
   platform: plex
   unique_id: f7tk075ehnpfj8dlx2j0885m
+media_player.lg_g6:
+  platform: plex
+  unique_id: 20c0766cd19381bf-com-plexapp-android
+media_player.ulfs_iphone:
+  platform: plex
+  unique_id: 368B8890-6BF1-4FCE-AC50-6CB512B5B54F
