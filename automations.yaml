@@ -278,7 +278,7 @@
     minutes: '/15' # trigger ever 15 min
     seconds: 00
   action:
-    - entity_id: switch.hall_car_indicator
+    - entity_id: group.carheater
       service_template: >
         {#-                                                                -#}
         {#- End of configuration                                           -#}

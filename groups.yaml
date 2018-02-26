@@ -3,17 +3,23 @@
     name: Hemma
     entities:
       - group.master
-      - group.carheater
+      - group.car
       - group.family
 
   carheater:
+    name: Bilvärme grupp
+    icon: mdi:car
+    entities:
+      - switch.hall_car_indicator
+      - switch.car_heater
+
+  car:
     name: Bilvärme och indikator
     icon: mdi:car
     entities:
       - automation.car_heater_on_timer
       - switch.hall_car_indicator
       - switch.car_heater
-#      - input_boolean.carheater
       - input_text.carleavetime
 
   master:
@@ -179,7 +185,7 @@
     name: Utomhus
     entities:
       - group.outback
-      - group.carheater
+      - group.car
       - group.outside
 
   sensor_view:

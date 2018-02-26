@@ -15,7 +15,7 @@ group.all_scripts:
 group.all_automations:
   homebridge_hidden: true
 group.carheater:
-  homebridge_hidden: true
+  friendly_name: Bilvärme grp
 group.vrum_view:
   homebridge_hidden: true
 group.tvrum_view:
@@ -52,6 +52,7 @@ switch.tv_tv:
   friendly_name: TVRum tv
 switch.hall_car_indicator:
   friendly_name: Bilvärme indikator i hall
+  homebridge_hidden: true
 switch.game_table:
   friendly_name: VRum spelbord
 switch.window_stairs:
@@ -65,6 +66,7 @@ switch.tv_painting:
   friendly_name: TVRum tavla
 switch.car_heater:
   friendly_name: Bilvärme
+  homebridge_hidden: true
 switch.remote_1:
   friendly_name: RemoteButton1
   homebridge_hidden: true
@@ -178,5 +180,5 @@ sensor.12_humidity:
   homebridge_hidden: true
   hidden: true
 automation.car_heater_on_timer:
-  friendly_name: Car Heater on Timer
+  friendly_name: Bilvärme på timer
   hidden: false

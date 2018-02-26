@@ -135,17 +135,11 @@ binary_sensor:
              or is_state('device_tracker.mia', 'home')
              or is_state('device_tracker.ulfprivate', 'home')
              or is_state('device_tracker.ulfwork', 'home') }}
- #{{ is_state('sensor.bedroom_co_status', 'Ok')
- #            and is_state('sensor.kitchen_co_status', 'Ok')
- #            and is_state('sensor.wardrobe_co_status', 'Ok') }}
 
 input_boolean:
   holiday:
     name: Borta på semester
     icon: mdi:beach
-  carheater:
-    name: Bilvärme på
-    icon: mdi:car
 
 input_text:
   carleavetime:
