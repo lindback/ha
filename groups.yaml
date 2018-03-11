@@ -18,8 +18,7 @@
     icon: mdi:car
     entities:
       - automation.car_heater_on_timer
-      - switch.hall_car_indicator
-      - switch.car_heater
+      - group.carheater
       - input_text.carleavetime
 
   master:

@@ -14,6 +14,7 @@ group.all_scripts:
   homebridge_hidden: true
 group.all_automations:
   homebridge_hidden: true
+  hidden: false
 group.carheater:
   friendly_name: Bilvärme grp
 group.vrum_view:

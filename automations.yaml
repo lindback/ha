@@ -15,21 +15,21 @@
 # Turn off after sunrise
 - alias: 'Släck efter soluppgång'
   trigger:
-    platform: sun
-    event: sunrise
-    offset: '+01:30:00'
+    - platform: sun
+      event: sunrise
+      offset: '+01:30:00'
   action:
     service: homeassistant.turn_off
     entity_id: group.study, group.tvrum, group.vrum
 # Turn on before sunset
-- alias: 'Tänd innan solnedång'
+- alias: 'Tänd innan solnedgång'
   trigger:
-    platform: sun
-    event: sunset
-    offset: '-01:30:00'
+    - platform: sun
+      event: sunset
+      offset: '-01:30:00'
   action:
     service: homeassistant.turn_on
-    entity_id: group.study, group.tvrum, group.vrum
+    entity_id: group.study, group.tvrum, group.vrum, group.conservatory
 
 # study on
 - alias: 'Arbetsrum på vardagar'
@@ -124,7 +124,7 @@
 - alias: 'Orangeri på'
   trigger:
     - platform: time
-      at: '06:15:00'
+      at: '18:00:00'
   action:
     service: homeassistant.turn_on
     entity_id: group.conservatory
@@ -152,7 +152,7 @@
   action:
     service: homeassistant.turn_off
     entity_id: switch.conservatory_plants
-# plant light kitchen on vardargar
+# plant light kitchen on vardagar
 - alias: 'Lysrör kök på vardagar'
   trigger:
     - platform: time
@@ -272,20 +272,20 @@
       message: "Baksida rörelse: {{ states.switch.motion_back.last_updated }}"
 - alias: No motion back anymore
   trigger:
-    platform: state
-    entity_id: sensor.motion_back
-    to: 'off'
-    for:
-      minutes: 5
+    - platform: state
+      entity_id: sensor.motion_back
+      to: 'off'
+      for:
+        minutes: 5
   action:
     service: notify.hangouts
     data_template:
       message: "Slut rörelse baksida"
 - alias: Car Heater on Timer
   trigger:
-    platform: time
-    minutes: '/15' # trigger ever 15 min
-    seconds: 00
+    - platform: time
+      minutes: '/15' # trigger ever 15 min
+      seconds: 00
   action:
     - entity_id: group.carheater
       service_template: >

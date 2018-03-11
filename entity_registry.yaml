@@ -1,63 +1,96 @@
 sensor.hall_temperature:
+  name:
   platform: zwave
   unique_id: 2-72057594076479506
 climate.hall_energy_heat:
+  name:
   platform: zwave
   unique_id: 2-72057594076774578
 climate.hall_heating:
+  name:
   platform: zwave
   unique_id: 2-72057594076774418
 sensor.laundry_temperature:
+  name:
   platform: zwave
   unique_id: 3-72057594093256722
 climate.laundry_heating:
+  name:
   platform: zwave
   unique_id: 3-72057594093551634
 climate.laundry_energy_heat:
+  name:
   platform: zwave
   unique_id: 3-72057594093551794
 switch.bookshelf:
+  name:
   platform: zwave
   unique_id: 4-72057594109837312
 sensor.bookshelf_alarm_type:
+  name:
   platform: zwave
   unique_id: 4-72057594111082497
 sensor.bookshelf_alarm_level:
+  name:
   platform: zwave
   unique_id: 4-72057594111082513
 switch.conservatory_side:
+  name:
   platform: zwave
   unique_id: 5-72057594126614528
 switch.conservatory_front:
+  name:
   platform: zwave
   unique_id: 8-72057594176946176
 switch.piano:
+  name:
   platform: zwave
   unique_id: 13-72057594260832256
 switch.conservatory_plants:
+  name:
   platform: zwave
   unique_id: 15-72057594294386688
 switch.window_bookshelf:
+  name:
   platform: zwave
   unique_id: 16-72057594311163904
 switch.kitchen_window:
+  name:
   platform: zwave
   unique_id: 19-72057594361495552
 switch.kitchen_plants:
+  name:
   platform: zwave
   unique_id: 20-72057594378272768
 switch.study:
+  name:
   platform: zwave
   unique_id: 21-72057594395049984
 media_player.rasplex:
+  name:
   platform: plex
   unique_id: 49ddb3e6-4055-4b6d-8015-c620fd539119
 media_player.plex_web_chrome:
+  name:
   platform: plex
   unique_id: f7tk075ehnpfj8dlx2j0885m
 media_player.lg_g6:
+  name:
   platform: plex
   unique_id: 20c0766cd19381bf-com-plexapp-android
 media_player.ulfs_iphone:
+  name:
   platform: plex
   unique_id: 368B8890-6BF1-4FCE-AC50-6CB512B5B54F
+media_player.ipad_pro:
+  name:
+  platform: plex
+  unique_id: 38D1A961-F744-4D4D-987C-D6F24A6F667C
+media_player.stereon:
+  name:
+  platform: cast
+  unique_id: f3d70826-e431-9813-425a-6f786cef2a4a
+media_player.tv_taby:
+  name:
+  platform: cast
+  unique_id: 40e839e5-409c-b347-e1c3-aff8b59ee6fa
