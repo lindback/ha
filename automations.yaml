@@ -262,16 +262,25 @@
         homeassistant.turn_off
       {% endif %}
     entity_id: group.carheater
-#- alias: Montion sensor backside
-#  trigger:
-#    - platform: state
-#      entity_id: switch.motion_back
-#  action:
-#    service_template: >
-#      {% if is_state('switch.motion_back', 'on') %}
-#        switch.toggle
-#      {% endif %}
-#    entity_id: switch.tv_painting
+- alias: Montion sensor backside
+  trigger:
+    - platform: state
+      entity_id: switch.motion_back
+  action:
+    service: notify.hangouts
+    data_template:
+      message: "Baksida rörelse: {{ states.switch.motion_back.last_updated }}"
+- alias: No motion back anymore
+  trigger:
+    platform: state
+    entity_id: sensor.motion_back
+    to: 'off'
+    for:
+      minutes: 5
+  action:
+    service: notify.hangouts
+    data_template:
+      message: "Slut rörelse baksida"
 - alias: Car Heater on Timer
   trigger:
     platform: time
